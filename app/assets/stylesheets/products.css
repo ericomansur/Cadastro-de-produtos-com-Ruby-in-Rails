@@ -37,3 +37,12 @@ body {
 
 a { text-decoration: none; }
 
+body { background: #e4e9f0; font-family: 'Poppins', sans-serif; padding: 2rem; }
+.card { transition: transform 0.2s; }
+.card:hover { transform: translateY(-5px); }
+.btn-success { background: #4ecdc4; border: none; }
+.btn-success:hover { background: #3ab3a2; }
+.btn-danger { background: #e74c3c; border: none; }
+.btn-danger:hover { background: #c0392b; }
+.btn-warning { background: #f39c12; border: none; color: white; }
+.btn-warning:hover { background: #d48806; }

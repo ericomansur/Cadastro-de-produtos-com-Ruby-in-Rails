@@ -4,6 +4,10 @@
   <%= link_to "Novo Produto", new_product_path, class: "btn btn-primary fw-bold px-4 py-2 shadow-sm" %>
 </div>
 
+<% if notice %>
+  <div class="alert alert-success text-center fw-bold"><%= notice %></div>
+<% end %>
+
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <% @products.each do |product| %>
     <div class="col">
@@ -11,13 +15,9 @@
         <div class="card-body d-flex flex-column">
           <h5 class="card-title fw-bold" style="color: #34495e;"><%= product.name %></h5>
           <p class="card-subtitle mb-2 text-primary fw-semibold">R$ <%= product.price %></p>
-          <div class="mt-3 d-flex justify-content-between">
-
+          <div class="mt-auto d-flex justify-content-between">
             <%= link_to "Editar", edit_product_path(product), class: "btn btn-sm btn-warning text-white fw-bold shadow-sm" %>
-
-            <%= button_to "Excluir", product_path(product), method: :delete, data: { confirm: "Tem certeza?", turbo: false }, class: "btn btn-sm btn-danger fw-bold shadow-sm" %>
-
-
+            <%= button_to "Excluir", product_path(product), method: :delete, data: { confirm: "Tem certeza que deseja excluir este produto?" }, class: "btn btn-sm btn-danger fw-bold shadow-sm" %>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@ body { background: #e4e9f0; font-family: 'Poppins', sans-serif; padding: 2rem; }
 .card:hover { transform: translateY(-5px); }
 .btn-primary { background: #5b6ef6; border: none; }
 .btn-primary:hover { background: #495edc; }
-.btn-warning { background: #f39c12; border: none; }
+.btn-warning { background: #f39c12; border: none; color: white; }
 .btn-warning:hover { background: #d48806; }
 .btn-danger { background: #e74c3c; border: none; }
 .btn-danger:hover { background: #c0392b; }
