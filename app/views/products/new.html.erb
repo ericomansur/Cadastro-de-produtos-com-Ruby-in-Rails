@@ -1,0 +1,17 @@
+<h1>Novo Produto</h1>
+
+<%= form_with model: @product do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :price %>
+    <%= f.number_field :price, step: 0.01 %>
+  </div>
+
+  <div>
+    <%= f.submit "Salvar" %>
+  </div>
+<% end %>
