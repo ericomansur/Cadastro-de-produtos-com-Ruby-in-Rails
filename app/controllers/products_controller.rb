@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
   protect_from_forgery with: :null_session
 
-  before_action :set_product, only: %i[show update destroy]
+  before_action :set_product, only: %i[show edit update destroy]
+
 
   def index
     @products = Product.all
@@ -39,15 +40,29 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      render json: @product
+      respond_to do |format|
+        format.html { redirect_to products_path, notice: "Produto atualizado" }
+        format.json { render json: @product }
+      end
     else
-      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity }
+      end
     end
+  end
+
+
+  def edit
   end
 
   def destroy
     @product.destroy
-    head :no_content
+
+    respond_to do |format|
+      format.html { redirect_to products_path, notice: "Produto excluído com sucesso" }
+      format.json { head :no_content }
+    end
   end
 
   private
