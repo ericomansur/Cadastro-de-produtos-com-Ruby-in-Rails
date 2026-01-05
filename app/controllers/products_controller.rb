@@ -7,10 +7,27 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @products }
+    # Busca por nome
+    if params[:search].present?
+      @products = @products.where("name ILIKE ?", "%#{params[:search]}%")
     end
+
+    # Ordenação
+    case params[:sort]
+    when "name_asc"
+      @products = @products.order(name: :asc)
+    when "name_desc"
+      @products = @products.order(name: :desc)
+    when "price_asc"
+      @products = @products.order(price: :asc)
+    when "price_desc"
+      @products = @products.order(price: :desc)
+    else
+      @products = @products.order(created_at: :desc)
+    end
+
+    # Paginação (usando Kaminari)
+    @products = @products.page(params[:page]).per(6)
   end
 
   def show
@@ -74,4 +91,7 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :price, :description)
   end
+
+
+
 end

@@ -1,28 +1,46 @@
-<h1 class="mb-4 text-center fw-bold" style="font-family: 'Poppins', sans-serif; color: #2c3e50;">Produtos</h1>
+<h1 class="mb-4 text-center fw-bold">Produtos</h1>
 
-<div class="d-flex justify-content-center mb-4">
-  <%= link_to "Novo Produto", new_product_path, class: "btn btn-primary fw-bold px-4 py-2 shadow-sm" %>
+<div class="d-flex justify-content-between mb-4">
+  <%= form_with url: products_path, method: :get, local: true, class: "d-flex" do |f| %>
+    <%= f.text_field :search, params[:search], placeholder: "Buscar por nome", class: "form-control me-2" %>
+    <%= f.submit "Buscar", class: "btn btn-primary" %>
+  <% end %>
+
+  <div>
+    <%= link_to "Novo Produto", new_product_path, class: "btn btn-success fw-bold" %>
+  </div>
 </div>
 
-<% if notice %>
-  <div class="alert alert-success text-center fw-bold"><%= notice %></div>
-<% end %>
+<div class="d-flex justify-content-end mb-3">
+  <%= form_with url: products_path, method: :get, local: true do |f| %>
+    <%= f.select :sort, options_for_select([
+      ["Nome ↑", "name_asc"],
+      ["Nome ↓", "name_desc"],
+      ["Preço ↑", "price_asc"],
+      ["Preço ↓", "price_desc"]
+    ], params[:sort]), {}, onchange: "this.form.submit();" , class: "form-select w-auto" %>
+  <% end %>
+</div>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <% @products.each do |product| %>
     <div class="col">
       <div class="card h-100 shadow border-0 rounded-4" style="transition: transform 0.2s; background: linear-gradient(145deg, #ffffff, #f2f4f7);">
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title fw-bold" style="color: #34495e;"><%= product.name %></h5>
+          <h5 class="card-title fw-bold"><%= product.name %></h5>
           <p class="card-subtitle mb-2 text-primary fw-semibold">R$ <%= product.price %></p>
-          <div class="mt-auto d-flex justify-content-between">
-            <%= link_to "Editar", edit_product_path(product), class: "btn btn-sm btn-warning text-white fw-bold shadow-sm" %>
-            <%= button_to "Excluir", product_path(product), method: :delete, data: { confirm: "Tem certeza que deseja excluir este produto?" }, class: "btn btn-sm btn-danger fw-bold shadow-sm" %>
+          <div class="mt-3 d-flex justify-content-between">
+            <%= link_to "Editar", edit_product_path(product), class: "btn btn-sm btn-warning text-white fw-bold" %>
+            <%= button_to "Excluir", product_path(product), method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-sm btn-danger fw-bold" %>
           </div>
         </div>
       </div>
     </div>
   <% end %>
+</div>
+
+<div class="mt-4 d-flex justify-content-center">
+  <%= paginate @products %>
 </div>
 
 <style>

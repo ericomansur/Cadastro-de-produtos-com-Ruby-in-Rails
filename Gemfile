@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem 'bootstrap', '~> 5.3.0'
 gem 'sassc-rails'
+gem 'kaminari'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.1"
