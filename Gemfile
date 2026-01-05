@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+gem 'bootstrap', '~> 5.3.0'
+gem 'sassc-rails'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.1"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
@@ -64,3 +67,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+

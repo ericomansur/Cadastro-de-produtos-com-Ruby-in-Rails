@@ -1,17 +1,61 @@
-<h1>Produtos</h1>
+<h1 class="mb-4 text-center fw-bold" style="font-family: 'Poppins', sans-serif; color: #2c3e50;">Produtos</h1>
 
-<%= link_to "Novo produto", new_product_path %>
+<div class="d-flex justify-content-center mb-4">
+  <%= link_to "Novo Produto", new_product_path, class: "btn btn-primary fw-bold px-4 py-2 shadow-sm" %>
+</div>
 
-<ul>
+<div class="row row-cols-1 row-cols-md-3 g-4">
   <% @products.each do |product| %>
-    <li>
-      <%= product.name %> - R$ <%= product.price %>
-      |
-      <%= link_to "Editar", edit_product_path(product) %>
-      |
-      <%= link_to "Excluir", product_path(product), data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>
-      |   
-    </li>
+    <div class="col">
+      <div class="card h-100 shadow border-0 rounded-4" style="transition: transform 0.2s; background: linear-gradient(145deg, #ffffff, #f2f4f7);">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-bold" style="color: #34495e;"><%= product.name %></h5>
+          <p class="card-subtitle mb-2 text-primary fw-semibold">R$ <%= product.price %></p>
+          <div class="mt-3 d-flex justify-content-between">
+            <%= link_to "Editar", edit_product_path(product), class: "btn btn-sm btn-warning text-white fw-bold shadow-sm" %>
+            <%= link_to "Excluir", product_path(product), method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-sm btn-danger fw-bold shadow-sm" %>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
 
+<style>
+  body {
+    background: #e4e9f0;
+    font-family: 'Poppins', sans-serif;
+    padding: 2rem;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .btn-primary {
+    background: #5b6ef6;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: #495edc;
+  }
+
+  .btn-warning {
+    background: #f39c12;
+    border: none;
+  }
+
+  .btn-warning:hover {
+    background: #d48806;
+  }
+
+  .btn-danger {
+    background: #e74c3c;
+    border: none;
+  }
+
+  .btn-danger:hover {
+    background: #c0392b;
+  }
+</style>

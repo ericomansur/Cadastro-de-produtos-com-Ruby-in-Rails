@@ -1,17 +1,26 @@
-<h1>Editar Produto</h1>
+<div class="d-flex justify-content-center">
+  <div class="card card-product shadow-lg w-100" style="max-width: 600px; margin-top: 50px;">
+    <div class="card-body">
+      <h2 class="card-title mb-4 text-center fw-bold">
+        <%= @product.new_record? ? "Novo Produto" : "Editar Produto" %>
+      </h2>
 
-<%= form_with model: @product do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+      <%= form_with model: @product, local: true do |f| %>
+        <div class="mb-3">
+          <%= f.label :name, "Nome do Produto", class: "form-label fw-medium" %>
+          <%= f.text_field :name, class: "form-control", placeholder: "Digite o nome" %>
+        </div>
 
-  <div>
-    <%= f.label :price %>
-    <%= f.number_field :price, step: 0.01 %>
-  </div>
+        <div class="mb-3">
+          <%= f.label :price, "Preço (R$)", class: "form-label fw-medium" %>
+          <%= f.number_field :price, step: 0.01, class: "form-control", placeholder: "0.00" %>
+        </div>
 
-  <div>
-    <%= f.submit "Atualizar" %>
+        <div class="d-flex justify-content-between">
+          <%= f.submit @product.new_record? ? "Salvar" : "Atualizar", class: "btn btn-success-custom fw-bold" %>
+          <%= link_to "Cancelar", products_path, class: "btn btn-danger-custom fw-bold" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
