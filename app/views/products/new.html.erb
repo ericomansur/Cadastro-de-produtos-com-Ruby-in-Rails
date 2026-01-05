@@ -1,26 +1,36 @@
-<div class="d-flex justify-content-center">
-  <div class="card card-product shadow-lg w-100" style="max-width: 600px; margin-top: 50px;">
-    <div class="card-body">
-      <h2 class="card-title mb-4 text-center fw-bold">
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6">
+    <div class="card shadow-lg p-4" style="background: #ffffff; border-radius: 12px;">
+      <h2 class="text-center fw-bold mb-4" style="font-family: 'Poppins', sans-serif; color: #2c3e50;">
         <%= @product.new_record? ? "Novo Produto" : "Editar Produto" %>
       </h2>
 
       <%= form_with model: @product, local: true do |f| %>
         <div class="mb-3">
           <%= f.label :name, "Nome do Produto", class: "form-label fw-medium" %>
-          <%= f.text_field :name, class: "form-control", placeholder: "Digite o nome" %>
+          <%= f.text_field :name, class: "form-control", placeholder: "Digite o nome", style: "background: #ffffff;" %>
         </div>
 
         <div class="mb-3">
           <%= f.label :price, "Preço (R$)", class: "form-label fw-medium" %>
-          <%= f.number_field :price, step: 0.01, class: "form-control", placeholder: "0.00" %>
+          <%= f.number_field :price, step: 0.01, class: "form-control", placeholder: "0.00", style: "background: #ffffff;" %>
         </div>
-        
+
         <div class="d-flex justify-content-between">
-          <%= f.submit @product.new_record? ? "Salvar" : "Atualizar", class: "btn btn-success-custom fw-bold" %>
-          <%= link_to "Cancelar", products_path, class: "btn btn-danger-custom fw-bold" %>
+          <%= f.submit @product.new_record? ? "Salvar" : "Atualizar", class: "btn btn-success fw-bold" %>
+          <%= link_to "Cancelar", products_path, class: "btn btn-danger fw-bold" %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<style>
+body { background: #e4e9f0; font-family: 'Poppins', sans-serif; padding: 2rem; }
+.card { box-shadow: 0 4px 15px rgba(0,0,0,0.2); border-radius: 12px; }
+.btn-success { background: #4ecdc4; border: none; }
+.btn-success:hover { background: #3ab3a2; }
+.btn-danger { background: #e74c3c; border: none; }
+.btn-danger:hover { background: #c0392b; }
+.form-control { border-radius: 8px; border: 1px solid #ccc; padding: 0.5rem; }
+</style>

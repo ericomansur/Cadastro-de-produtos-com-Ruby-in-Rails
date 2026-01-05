@@ -1,0 +1,39 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #3a3a5c);
+  min-height: 100vh;
+  color: #f5f5f5;
+  padding-bottom: 3rem;
+}
+
+.navbar {
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+}
+
+.card-product {
+  background: #27293d;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.45);
+}
+
+.btn-primary-custom { background: #ff6b6b; border: none; }
+.btn-primary-custom:hover { background: #ff4c4c; }
+
+.btn-success-custom { background: #4ecdc4; border: none; }
+.btn-success-custom:hover { background: #3ab3a2; }
+
+.btn-danger-custom { background: #ff9f43; border: none; }
+.btn-danger-custom:hover { background: #ff7f1f; }
+
+.btn-warning-custom { background: #f39c12; border: none; }
+.btn-warning-custom:hover { background: #d48806; }
+
+a { text-decoration: none; }
+
