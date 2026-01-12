@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem 'bootstrap', '~> 5.3.0'
+gem 'bootstrap', '~> 5.3.8'
 gem 'sassc-rails'
 gem 'kaminari'
 
